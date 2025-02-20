@@ -11,6 +11,7 @@ _$ActionStatusModelImpl _$$ActionStatusModelImplFromJson(
     _$ActionStatusModelImpl(
       status: json['status'] as bool? ?? false,
       message: json['message'] as String? ?? '',
+      url: json['url'] as String? ?? '',
     );
 
 Map<String, dynamic> _$$ActionStatusModelImplToJson(
@@ -18,4 +19,5 @@ Map<String, dynamic> _$$ActionStatusModelImplToJson(
     <String, dynamic>{
       'status': instance.status,
       'message': instance.message,
+      'url': instance.url,
     };

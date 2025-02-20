@@ -49,7 +49,7 @@ class _HomeScreenState extends State<HomeScreen> {
         setState(() {});
       }
     } catch (e) {
-      debugPrint(e.toString());
+      // debugPrint(e.toString());
       status = ApiStatus.error;
       message = e.toString();
       setState(() {});

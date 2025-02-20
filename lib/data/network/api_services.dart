@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
@@ -11,13 +12,13 @@ class ApiServices implements BaseApiServices{
   Dio dio = Dio();
   // final String baseUrl = "https://r4everstore-backend.mooo.com/api/";
   final String baseUrl = "http://15.207.240.235:8080/api/";
-  // final String baseUrl = "http://192.168.201.245:8080/api/";
+  // final String baseUrl = "http://192.168.0.105:8080/api/";
 
   @override
   Future getRequest(String url, {Map<String, dynamic> data = const {}, bool token = true}) async{
     try{
-      debugPrint(baseUrl+url);
-      debugPrint("params $data");
+      // debugPrint(baseUrl+url);
+      // debugPrint("params $data");
       Response response = await dio.get(baseUrl+url, data: data, options: Options(
         headers: token ? {
           'x-auth-token': Session.token,
@@ -29,8 +30,8 @@ class ApiServices implements BaseApiServices{
     }on TimeoutException{
       throw const RequestTimeoutException();
     }catch(e, s){
-      debugPrint(e.toString());
-      debugPrintStack(stackTrace: s);
+      // debugPrint(e.toString());
+      // debugPrintStack(stackTrace: s);
       rethrow;
     }
   }
@@ -38,8 +39,8 @@ class ApiServices implements BaseApiServices{
   @override
   Future postRequest(String url, {Map<String, dynamic> data = const {}, bool withFile = false, bool token = true}) async{
     try{
-      debugPrint(baseUrl+url);
-      debugPrint("params $data");
+      // debugPrint(baseUrl+url);
+      // debugPrint("params $data");
       Response response = await dio.post(
           baseUrl+url,
         data: withFile ? FormData.fromMap(data) : data,
@@ -59,8 +60,8 @@ class ApiServices implements BaseApiServices{
   }
 
   dynamic returnResponse(Response response){
-    debugPrint("status code: ${response.statusCode}");
-    debugPrint("result: ${response.data}");
+    // debugPrint("status code: ${response.statusCode}");
+    // debugPrint("result: ${response.data}");
     switch(response.statusCode){
       case 200 : return response.data;
       case 201 : return response.data;
@@ -68,6 +69,27 @@ class ApiServices implements BaseApiServices{
       case 401 : return const UnauthorisedException();
       case 500 : return const FetchDataException();
       default : return const RequestTimeoutException();
+    }
+  }
+
+
+  Future uploadFile(String url, File file) async{
+    try{
+      // debugPrint(url);
+      // debugPrint("params $file");
+      Uint8List fil = await file.readAsBytes();
+      Response response = await dio.put(
+        url,
+        data: fil,
+        options: Options(
+          contentType: Headers.formUrlEncodedContentType
+        ),
+      ).timeout(const Duration(minutes: 1));
+      return returnResponse(response);
+    }on SocketException{
+      throw const NoInternetException();
+    }on TimeoutException{
+      throw const RequestTimeoutException();
     }
   }
 

@@ -36,8 +36,8 @@ class _ChangePasswordState extends State<ChangePassword> {
         Utils.showFlushBar(resp.message, FlushBarType.error, context);
       }
     }catch(e, s){
-      debugPrint(e.toString());
-      debugPrintStack(stackTrace: s);
+      // debugPrint(e.toString());
+      // debugPrintStack(stackTrace: s);
       status.value = ApiStatus.error;
       Utils.showFlushBar(e.toString(), FlushBarType.error, context);
     }finally{

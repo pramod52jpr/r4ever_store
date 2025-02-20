@@ -7,12 +7,14 @@ import 'package:intl/intl.dart';
 import 'package:r4everstore/data/model/action_status_model/action_status_model.dart';
 import 'package:r4everstore/data/model/global_data_model/global_data_model.dart';
 import 'package:r4everstore/data/network/api_services.dart';
+import 'package:r4everstore/data/repository/task_repo.dart';
 import 'package:r4everstore/utils/enum.dart';
 import 'package:r4everstore/utils/utils.dart';
 import 'package:r4everstore/widgets/app_button.dart';
 import 'package:r4everstore/widgets/custom_error_widget.dart';
 import 'package:r4everstore/widgets/loading_widget.dart';
 import 'package:r4everstore/widgets/upload_image.dart';
+import 'package:uuid/uuid.dart';
 
 class VipQrScreen extends StatefulWidget {
   final String planName;
@@ -56,7 +58,7 @@ class _VipQrScreenState extends State<VipQrScreen> {
         setState(() {});
       }
     }catch(e){
-      debugPrint(e.toString());
+      // debugPrint(e.toString());
       status = ApiStatus.error;
       message = e.toString();
       setState(() {});
@@ -64,20 +66,29 @@ class _VipQrScreenState extends State<VipQrScreen> {
   }
 
   void makePayment() async{
-    var res = await ApiServices().postRequest('plan/add_purchase_plan', data: {
-      "planName": widget.planName,
-      "amount": widget.amount,
-      "purchaseDate": "${DateTime.now()}",
-      "expiry": "${DateTime.now().add(const Duration(days: 180))}",
-      "image": await MultipartFile.fromFile(selectedImage!.path, filename: selectedImage!.path.split('/').last),
-      "status": false,
-    }, withFile: true);
-    ActionStatusModel resp = ActionStatusModel.fromJson(res);
-    if(resp.status){
-      Navigator.pop(context);
-      Utils.showFlushBar(resp.message, FlushBarType.success, context);
+    String fileName = "${const Uuid().v4()}.${selectedImage?.path.split('.').last}";
+    ActionStatusModel response = await TaskRepo().generateUrl({
+      "key": fileName,
+    });
+    if(response.status){
+      await ApiServices().uploadFile(response.url, selectedImage!);
+      var res = await ApiServices().postRequest('plan/add_purchase_plan', data: {
+        "planName": widget.planName,
+        "amount": widget.amount,
+        "purchaseDate": "${DateTime.now()}",
+        "expiry": "${DateTime.now().add(const Duration(days: 180))}",
+        "image": fileName,
+        "status": false,
+      });
+      ActionStatusModel resp = ActionStatusModel.fromJson(res);
+      if(resp.status){
+        Navigator.pop(context);
+        Utils.showFlushBar(resp.message, FlushBarType.success, context);
+      }else{
+        Utils.showFlushBar(resp.message, FlushBarType.error, context);
+      }
     }else{
-      Utils.showFlushBar(resp.message, FlushBarType.error, context);
+      throw "something went wrong";
     }
   }
   @override
@@ -146,7 +157,7 @@ class _VipQrScreenState extends State<VipQrScreen> {
                         Utils.showFlushBar("Invalid amount", FlushBarType.error, context);
                       }
                     }catch(e){
-                      debugPrint(e.toString());
+                      // debugPrint(e.toString());
                     }finally{
                       loadingPayment = false;
                       setState(() {});

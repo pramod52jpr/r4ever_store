@@ -11,8 +11,8 @@ class HolidayRepo{
       var res = await _api.getRequest("holiday/get_holidays");
       return AllHolidaysModel.fromJson(res);
     }catch(e, s){
-      debugPrint(e.toString());
-      debugPrintStack(stackTrace: s);
+      // debugPrint(e.toString());
+      // debugPrintStack(stackTrace: s);
       rethrow;
     }
   }
@@ -22,8 +22,8 @@ class HolidayRepo{
       var res = await _api.postRequest(update ? "holiday/update_holiday" : "holiday/add_holiday", data: data);
       return ActionStatusModel.fromJson(res);
     }catch(e, s){
-      debugPrint(e.toString());
-      debugPrintStack(stackTrace: s);
+      // debugPrint(e.toString());
+      // debugPrintStack(stackTrace: s);
       rethrow;
     }
   }
@@ -33,8 +33,8 @@ class HolidayRepo{
       var res = await _api.postRequest("holiday/delete_holiday", data: data);
       return ActionStatusModel.fromJson(res);
     }catch(e, s){
-      debugPrint(e.toString());
-      debugPrintStack(stackTrace: s);
+      // debugPrint(e.toString());
+      // debugPrintStack(stackTrace: s);
       rethrow;
     }
   }

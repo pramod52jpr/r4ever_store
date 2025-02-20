@@ -17,8 +17,8 @@ class ProfileRepo{
       var res = await _api.getRequest('profile/view_profile');
       return ViewProfileModel.fromJson(res);
     }catch(e, s){
-      debugPrint(e.toString());
-      debugPrintStack(stackTrace: s);
+      // debugPrint(e.toString());
+      // debugPrintStack(stackTrace: s);
       rethrow;
     }
   }
@@ -28,8 +28,8 @@ class ProfileRepo{
       var res = await _api.postRequest('profile/update_profile', data: data);
       return ActionStatusModel.fromJson(res);
     }catch(e, s){
-      debugPrint(e.toString());
-      debugPrintStack(stackTrace: s);
+      // debugPrint(e.toString());
+      // debugPrintStack(stackTrace: s);
       rethrow;
     }
   }
@@ -39,8 +39,8 @@ class ProfileRepo{
       var res = await _api.getRequest('bank/get_bank_details');
       return BankDetailModel.fromJson(res);
     }catch(e, s){
-      debugPrint(e.toString());
-      debugPrintStack(stackTrace: s);
+      // debugPrint(e.toString());
+      // debugPrintStack(stackTrace: s);
       rethrow;
     }
   }
@@ -50,8 +50,8 @@ class ProfileRepo{
       var res = await _api.postRequest('bank/update_bank_details', data: data);
       return ActionStatusModel.fromJson(res);
     }catch(e, s){
-      debugPrint(e.toString());
-      debugPrintStack(stackTrace: s);
+      // debugPrint(e.toString());
+      // debugPrintStack(stackTrace: s);
       rethrow;
     }
   }
@@ -61,8 +61,8 @@ class ProfileRepo{
       var res = await _api.getRequest('bank/get_all_bank_details');
       return AllBankDetailModel.fromJson(res);
     }catch(e, s){
-      debugPrint(e.toString());
-      debugPrintStack(stackTrace: s);
+      // debugPrint(e.toString());
+      // debugPrintStack(stackTrace: s);
       rethrow;
     }
   }
@@ -72,8 +72,8 @@ class ProfileRepo{
       var res = await _api.getRequest('auth/get_all_users_list');
       return AllUsersListModel.fromJson(res);
     }catch(e, s){
-      debugPrint(e.toString());
-      debugPrintStack(stackTrace: s);
+      // debugPrint(e.toString());
+      // debugPrintStack(stackTrace: s);
       rethrow;
     }
   }
@@ -83,8 +83,8 @@ class ProfileRepo{
       var res = await _api.postRequest('auth/block_unblock_user', data: data);
       return ActionStatusModel.fromJson(res);
     }catch(e, s){
-      debugPrint(e.toString());
-      debugPrintStack(stackTrace: s);
+      // debugPrint(e.toString());
+      // debugPrintStack(stackTrace: s);
       rethrow;
     }
   }
@@ -94,8 +94,8 @@ class ProfileRepo{
       var res = await _api.getRequest('bank/get_all_withdraw_request');
       return AllWithdrawRequestsModel.fromJson(res);
     }catch(e, s){
-      debugPrint(e.toString());
-      debugPrintStack(stackTrace: s);
+      // debugPrint(e.toString());
+      // debugPrintStack(stackTrace: s);
       rethrow;
     }
   }
@@ -105,8 +105,8 @@ class ProfileRepo{
       var res = await _api.getRequest('bank/get_my_withdrawals');
       return AllWithdrawRequestsModel.fromJson(res);
     }catch(e, s){
-      debugPrint(e.toString());
-      debugPrintStack(stackTrace: s);
+      // debugPrint(e.toString());
+      // debugPrintStack(stackTrace: s);
       rethrow;
     }
   }
@@ -116,8 +116,8 @@ class ProfileRepo{
       var res = await _api.postRequest('bank/send_money_success', data: data);
       return ActionStatusModel.fromJson(res);
     }catch(e, s){
-      debugPrint(e.toString());
-      debugPrintStack(stackTrace: s);
+      // debugPrint(e.toString());
+      // debugPrintStack(stackTrace: s);
       rethrow;
     }
   }

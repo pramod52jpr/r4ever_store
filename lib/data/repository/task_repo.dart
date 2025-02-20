@@ -16,8 +16,8 @@ class TaskRepo{
       var res = await _api.getRequest('task/get_all_tasks', data: data);
       return AllTaskModel.fromJson(res);
     }catch(e, s){
-      debugPrint(e.toString());
-      debugPrintStack(stackTrace: s);
+      // debugPrint(e.toString());
+      // debugPrintStack(stackTrace: s);
       rethrow;
     }
   }
@@ -27,19 +27,19 @@ class TaskRepo{
       var res = await _api.postRequest(update ? 'task/update_task' : 'task/upload_task', data: data);
       return ActionStatusModel.fromJson(res);
     }catch(e, s){
-      debugPrint(e.toString());
-      debugPrintStack(stackTrace: s);
+      // debugPrint(e.toString());
+      // debugPrintStack(stackTrace: s);
       rethrow;
     }
   }
 
   Future uploadNonYoutubeTask({required Map<String, dynamic> data, bool update = false}) async{
     try{
-      var res = await _api.postRequest(update ? 'task/update_non_youtube_task' : 'task/upload_non_youtube_task', data: data, withFile: true);
+      var res = await _api.postRequest(update ? 'task/update_non_youtube_task' : 'task/upload_non_youtube_task', data: data);
       return ActionStatusModel.fromJson(res);
     }catch(e, s){
-      debugPrint(e.toString());
-      debugPrintStack(stackTrace: s);
+      // debugPrint(e.toString());
+      // debugPrintStack(stackTrace: s);
       rethrow;
     }
   }
@@ -49,8 +49,8 @@ class TaskRepo{
       var res = await _api.postRequest('task/delete_task', data: data);
       return ActionStatusModel.fromJson(res);
     }catch(e, s){
-      debugPrint(e.toString());
-      debugPrintStack(stackTrace: s);
+      // debugPrint(e.toString());
+      // debugPrintStack(stackTrace: s);
       rethrow;
     }
   }
@@ -60,8 +60,8 @@ class TaskRepo{
       var res = await _api.postRequest('task/add_task_work', data: data);
       return ActionStatusModel.fromJson(res);
     }catch(e, s){
-      debugPrint(e.toString());
-      debugPrintStack(stackTrace: s);
+      // debugPrint(e.toString());
+      // debugPrintStack(stackTrace: s);
       rethrow;
     }
   }
@@ -71,19 +71,30 @@ class TaskRepo{
       var res = await _api.getRequest('task/get_my_task_work');
       return MyTaskModel.fromJson(res);
     }catch(e, s){
-      debugPrint(e.toString());
-      debugPrintStack(stackTrace: s);
+      // debugPrint(e.toString());
+      // debugPrintStack(stackTrace: s);
       rethrow;
     }
   }
 
   Future updateTaskWork(Map<String, dynamic> data) async{
     try{
-      var res = await _api.postRequest('task/update_task_work',data: data, withFile: true);
+      var res = await _api.postRequest('task/update_task_work',data: data);
       return ActionStatusModel.fromJson(res);
     }catch(e, s){
-      debugPrint(e.toString());
-      debugPrintStack(stackTrace: s);
+      // debugPrint(e.toString());
+      // debugPrintStack(stackTrace: s);
+      rethrow;
+    }
+  }
+
+  Future generateUrl(Map<String, dynamic> data) async{
+    try{
+      var res = await _api.postRequest('task/generate_upload_url',data: data);
+      return ActionStatusModel.fromJson(res);
+    }catch(e, s){
+      // debugPrint(e.toString());
+      // debugPrintStack(stackTrace: s);
       rethrow;
     }
   }

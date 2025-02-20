@@ -7,8 +7,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:r4everstore/data/model/action_status_model/action_status_model.dart';
 import 'package:r4everstore/data/model/all_task_model/all_task_model.dart';
 import 'package:r4everstore/data/model/my_task_model/my_task_model.dart';
+import 'package:r4everstore/data/network/api_services.dart';
 import 'package:r4everstore/data/repository/task_repo.dart';
 import 'package:r4everstore/utils/enum.dart';
+import 'package:uuid/uuid.dart';
 part 'task_event.dart';
 part 'task_state.dart';
 
@@ -61,8 +63,8 @@ class TaskBloc extends Bloc<TaskEvent, TaskState>{
         throw res.message;
       }
     }catch(e, s){
-      debugPrint(e.toString());
-      debugPrintStack(stackTrace: s);
+      // debugPrint(e.toString());
+      // debugPrintStack(stackTrace: s);
       emit(state.copyWith(fetchDataApiStatus: ApiStatus.error, error: e.toString()));
     }
   }
@@ -93,21 +95,29 @@ class TaskBloc extends Bloc<TaskEvent, TaskState>{
       }else{
         if(state.uploadVideoFile == null) throw 'Upload the file';
         emit(state.copyWith(actionApiStatus: ApiStatus.loading));
-        data = {
-          "category": state.taskData!.category
-        };
-        if(state.uploadVideoFile is File){
-          data.addAll({
-            "file": await MultipartFile.fromFile(
-              (state.uploadVideoFile as File).path,
-              filename: (state.uploadVideoFile as File).path.split('/').last,
-            )
-          });
-        }
-        if(event.taskId != null){
-          data.addAll({
-            "taskId": event.taskId,
-          });
+        String fileName = "${const Uuid().v4()}.${(state.uploadVideoFile as File).path.split('.').last}";
+        ActionStatusModel resp = await taskRepo.generateUrl({
+          "key": fileName,
+        });
+        if(resp.status){
+          await ApiServices().uploadFile(resp.url, state.uploadVideoFile);
+          data = {
+            "category": state.taskData!.category,
+            "link": fileName
+          };
+          // if(state.uploadVideoFile is File){
+          //   data.addAll({
+          //     "file": await MultipartFile.fromFile(
+          //       (state.uploadVideoFile as File).path,
+          //       filename: (state.uploadVideoFile as File).path.split('/').last,
+          //     )
+          //   });
+          // }
+          if(event.taskId != null){
+            data.addAll({
+              "taskId": event.taskId,
+            });
+          }
         }
       }
       ActionStatusModel res = state.taskData!.category == 'youtube'
@@ -119,8 +129,8 @@ class TaskBloc extends Bloc<TaskEvent, TaskState>{
         throw res.message;
       }
     }catch(e, s){
-      debugPrint(e.toString());
-      debugPrintStack(stackTrace: s);
+      // debugPrint(e.toString());
+      // debugPrintStack(stackTrace: s);
       emit(state.copyWith(actionApiStatus: ApiStatus.error, error: e.toString()));
     }finally{
       emit(state.copyWith(actionApiStatus: ApiStatus.initial));
@@ -140,8 +150,8 @@ class TaskBloc extends Bloc<TaskEvent, TaskState>{
         throw res.message;
       }
     }catch(e, s){
-      debugPrint(e.toString());
-      debugPrintStack(stackTrace: s);
+      // debugPrint(e.toString());
+      // debugPrintStack(stackTrace: s);
       emit(state.copyWith(deleteApiStatus: ApiStatus.error, error: e.toString()));
     }finally{
       emit(state.copyWith(deleteApiStatus: ApiStatus.initial));
@@ -162,8 +172,8 @@ class TaskBloc extends Bloc<TaskEvent, TaskState>{
         throw res.message;
       }
     }catch(e, s){
-      debugPrint(e.toString());
-      debugPrintStack(stackTrace: s);
+      // debugPrint(e.toString());
+      // debugPrintStack(stackTrace: s);
       emit(state.copyWith(actionApiStatus: ApiStatus.error, error: e.toString()));
     }finally{
       emit(state.copyWith(actionApiStatus: ApiStatus.initial));
@@ -180,8 +190,8 @@ class TaskBloc extends Bloc<TaskEvent, TaskState>{
         throw res.message;
       }
     }catch(e, s){
-      debugPrint(e.toString());
-      debugPrintStack(stackTrace: s);
+      // debugPrint(e.toString());
+      // debugPrintStack(stackTrace: s);
       emit(state.copyWith(fetchDataApiStatus: ApiStatus.error, error: e.toString()));
     }
   }
@@ -203,9 +213,19 @@ class TaskBloc extends Bloc<TaskEvent, TaskState>{
         "taskId": event.taskWorkId,
       };
       if(!event.nonYoutubeTask){
-        data.addAll({
-          "image": await MultipartFile.fromFile((state.taskImage as File).path, filename: (state.taskImage as File).path.split('/').last),
+        String fileName = "${const Uuid().v4()}.${state.taskImage?.path.split('.').last}";
+        ActionStatusModel response = await TaskRepo().generateUrl({
+          "key": fileName,
         });
+        if(response.status){
+          await ApiServices().uploadFile(response.url, state.taskImage!);
+          data.addAll({
+            "image": fileName
+            // "image": await MultipartFile.fromFile((state.taskImage as File).path, filename: (state.taskImage as File).path.split('/').last),
+          });
+        }else{
+          throw "something went wrong";
+        }
       }
       ActionStatusModel res = await taskRepo.updateTaskWork(data);
       if(res.status){
@@ -214,8 +234,8 @@ class TaskBloc extends Bloc<TaskEvent, TaskState>{
         throw res.message;
       }
     }catch(e, s){
-      debugPrint(e.toString());
-      debugPrintStack(stackTrace: s);
+      // debugPrint(e.toString());
+      // debugPrintStack(stackTrace: s);
       emit(state.copyWith(actionApiStatus: ApiStatus.error, error: e.toString()));
     }finally{
       emit(state.copyWith(actionApiStatus: ApiStatus.initial));

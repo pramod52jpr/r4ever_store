@@ -5,12 +5,14 @@ import 'package:flutter/material.dart';
 import 'package:r4everstore/data/model/action_status_model/action_status_model.dart';
 import 'package:r4everstore/data/model/global_data_model/global_data_model.dart';
 import 'package:r4everstore/data/network/api_services.dart';
+import 'package:r4everstore/data/repository/task_repo.dart';
 import 'package:r4everstore/utils/enum.dart';
 import 'package:r4everstore/utils/utils.dart';
 import 'package:r4everstore/widgets/app_button.dart';
 import 'package:r4everstore/widgets/custom_error_widget.dart';
 import 'package:r4everstore/widgets/loading_widget.dart';
 import 'package:r4everstore/widgets/upload_image.dart';
+import 'package:uuid/uuid.dart';
 
 class UploadQr extends StatefulWidget {
   const UploadQr({super.key});
@@ -53,7 +55,7 @@ class _UploadQrState extends State<UploadQr> {
         setState(() {});
       }
     }catch(e){
-      debugPrint(e.toString());
+      // debugPrint(e.toString());
       status = ApiStatus.error;
       message = e.toString();
       setState(() {});
@@ -69,19 +71,27 @@ class _UploadQrState extends State<UploadQr> {
       setState(() {
         uploadLoading = true;
       });
-      var res = await ApiServices().postRequest(
-          "plan/upload_qr_code",
-          data: {
-            "file": await MultipartFile.fromFile(qrImage!.path, filename: qrImage!.path.split('/').last)
-          },
-          withFile: true,
-      );
-      ActionStatusModel finalRes = ActionStatusModel.fromJson(res);
-      if(finalRes.status){
-        fetchQrImage();
-        Utils.showFlushBar(finalRes.message, FlushBarType.success, context);
+      String fileName = "${const Uuid().v4()}.${qrImage?.path.split('.').last}";
+      ActionStatusModel resp = await TaskRepo().generateUrl({
+        "key": fileName,
+      });
+      if(resp.status){
+        await ApiServices().uploadFile(resp.url, qrImage!);
+        var res = await ApiServices().postRequest(
+            "plan/upload_qr_code",
+            data: {
+              "qrCode": fileName
+            },
+        );
+        ActionStatusModel finalRes = ActionStatusModel.fromJson(res);
+        if(finalRes.status){
+          fetchQrImage();
+          Utils.showFlushBar(finalRes.message, FlushBarType.success, context);
+        }else{
+          Utils.showFlushBar(finalRes.message, FlushBarType.error, context);
+        }
       }else{
-        Utils.showFlushBar(finalRes.message, FlushBarType.error, context);
+        throw "something went wrong";
       }
     }catch(e, s){
       Utils.showFlushBar(e.toString(), FlushBarType.error, context);
@@ -107,7 +117,7 @@ class _UploadQrState extends State<UploadQr> {
     }catch(e){
       deleteStatus = ApiStatus.error;
       setState(() {});
-      debugPrint(e.toString());
+      // debugPrint(e.toString());
     }finally{
       deleteStatus = ApiStatus.initial;
       setState(() {});

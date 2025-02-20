@@ -127,7 +127,6 @@ class _SubmitTaskState extends State<SubmitTask> with WidgetsBindingObserver {
                   BlocBuilder<TaskBloc, TaskState>(
                     buildWhen: (previous, current) => previous.taskImage != current.taskImage,
                     builder: (context, state) {
-                      print("the data is ${state.taskImage}");
                       return UploadImage(
                         imageFile: state.taskImage,
                         onTap: () async{

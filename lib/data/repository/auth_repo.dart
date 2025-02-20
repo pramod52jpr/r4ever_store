@@ -14,8 +14,8 @@ class AuthRepo{
       var res = await _api.postRequest('auth/signup', data: data, token: false);
       return RegisterModel.fromJson(res);
     }catch(e, s){
-      debugPrint(e.toString());
-      debugPrintStack(stackTrace: s);
+      // debugPrint(e.toString());
+      // debugPrintStack(stackTrace: s);
       rethrow;
     }
   }
@@ -24,8 +24,8 @@ class AuthRepo{
       var res = await _api.postRequest('auth/signin', data: data, token: false);
       return LoginModel.fromJson(res);
     }catch(e, s){
-      debugPrint(e.toString());
-      debugPrintStack(stackTrace: s);
+      // debugPrint(e.toString());
+      // debugPrintStack(stackTrace: s);
       rethrow;
     }
   }
@@ -35,8 +35,8 @@ class AuthRepo{
       var res = await _api.getRequest('auth/get_wallet_data');
       return WalletApiModel.fromJson(res);
     }catch(e, s){
-      debugPrint(e.toString());
-      debugPrintStack(stackTrace: s);
+      // debugPrint(e.toString());
+      // debugPrintStack(stackTrace: s);
       rethrow;
     }
   }
@@ -48,8 +48,8 @@ class AuthRepo{
       });
       return ActionStatusModel.fromJson(res);
     }catch(e, s){
-      debugPrint(e.toString());
-      debugPrintStack(stackTrace: s);
+      // debugPrint(e.toString());
+      // debugPrintStack(stackTrace: s);
       rethrow;
     }
   }
@@ -61,8 +61,8 @@ class AuthRepo{
       });
       return ActionStatusModel.fromJson(res);
     }catch(e, s){
-      debugPrint(e.toString());
-      debugPrintStack(stackTrace: s);
+      // debugPrint(e.toString());
+      // debugPrintStack(stackTrace: s);
       rethrow;
     }
   }
@@ -72,8 +72,8 @@ class AuthRepo{
       var res = await _api.getRequest('auth/get_refer_code');
       return ReferCodeModel.fromJson(res);
     }catch(e, s){
-      debugPrint(e.toString());
-      debugPrintStack(stackTrace: s);
+      // debugPrint(e.toString());
+      // debugPrintStack(stackTrace: s);
       rethrow;
     }
   }
@@ -83,8 +83,8 @@ class AuthRepo{
       var res = await _api.postRequest('auth/get_single_user');
       return LoginModel.fromJson(res);
     }catch(e, s){
-      debugPrint(e.toString());
-      debugPrintStack(stackTrace: s);
+      // debugPrint(e.toString());
+      // debugPrintStack(stackTrace: s);
       rethrow;
     }
   }

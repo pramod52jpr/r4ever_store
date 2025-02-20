@@ -52,7 +52,7 @@ class _AdminImpMessageState extends State<AdminImpMessage> {
         setState(() {});
       }
     } catch (e) {
-      debugPrint(e.toString());
+      // debugPrint(e.toString());
       status = ApiStatus.error;
       message = e.toString();
       setState(() {});
@@ -81,8 +81,8 @@ class _AdminImpMessageState extends State<AdminImpMessage> {
       setState(() {
         updateLoading = ApiStatus.error;
       });
-      debugPrint(e.toString());
-      debugPrintStack(stackTrace: s);
+      // debugPrint(e.toString());
+      // debugPrintStack(stackTrace: s);
       Utils.showFlushBar(e.toString(), FlushBarType.error, context);
     }finally{
       setState(() {

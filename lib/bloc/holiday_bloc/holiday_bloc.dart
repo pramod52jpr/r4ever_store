@@ -28,8 +28,8 @@ class HolidayBloc extends Bloc<HolidayEvent, HolidayState> {
         throw res.message;
       }
     }catch(e, s){
-      debugPrint(e.toString());
-      debugPrintStack(stackTrace: s);
+      // debugPrint(e.toString());
+      // debugPrintStack(stackTrace: s);
       emit(state.copyWith(fetchDataApiStatus: ApiStatus.error, message: e.toString()));
     }
   }
@@ -60,8 +60,8 @@ class HolidayBloc extends Bloc<HolidayEvent, HolidayState> {
         throw res.message;
       }
     }catch(e, s){
-      debugPrint(e.toString());
-      debugPrintStack(stackTrace: s);
+      // debugPrint(e.toString());
+      // debugPrintStack(stackTrace: s);
       emit(state.copyWith(actionApiStatus: ApiStatus.error, message: e.toString()));
     }finally{
       emit(state.copyWith(actionApiStatus: ApiStatus.initial));
@@ -82,8 +82,8 @@ class HolidayBloc extends Bloc<HolidayEvent, HolidayState> {
         throw res.message;
       }
     }catch(e, s){
-      debugPrint(e.toString());
-      debugPrintStack(stackTrace: s);
+      // debugPrint(e.toString());
+      // debugPrintStack(stackTrace: s);
       emit(state.copyWith(deleteApiStatus: ApiStatus.error, message: e.toString()));
     }finally{
       emit(state.copyWith(deleteApiStatus: ApiStatus.initial));

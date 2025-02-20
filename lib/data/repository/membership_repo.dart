@@ -11,8 +11,8 @@ class MembershipRepo{
       var res = await _api.postRequest("plan/add_purchase_plan", data: data);
       return ActionStatusModel.fromJson(res);
     }catch(e, s){
-      debugPrint(e.toString());
-      debugPrintStack(stackTrace: s);
+      // debugPrint(e.toString());
+      // debugPrintStack(stackTrace: s);
       rethrow;
     }
   }
@@ -22,8 +22,8 @@ class MembershipRepo{
       var res = await _api.getRequest("profile/get_my_team");
       return MyTeamModel.fromJson(res);
     }catch(e, s){
-      debugPrint(e.toString());
-      debugPrintStack(stackTrace: s);
+      // debugPrint(e.toString());
+      // debugPrintStack(stackTrace: s);
       rethrow;
     }
   }

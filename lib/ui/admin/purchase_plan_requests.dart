@@ -48,7 +48,7 @@ class _PurchasePlanRequestsState extends State<PurchasePlanRequests> {
         setState(() {});
       }
     }catch(e){
-      debugPrint(e.toString());
+      // debugPrint(e.toString());
       status = ApiStatus.error;
       message = e.toString();
       setState(() {});
@@ -73,7 +73,7 @@ class _PurchasePlanRequestsState extends State<PurchasePlanRequests> {
         Utils.showFlushBar(resp.message, FlushBarType.error, context);
       }
     }catch(e){
-      debugPrint(e.toString());
+      // debugPrint(e.toString());
       setState(() {});
     }finally{
       loadingIndex = -1;
@@ -99,7 +99,7 @@ class _PurchasePlanRequestsState extends State<PurchasePlanRequests> {
         Utils.showFlushBar(resp.message, FlushBarType.error, context);
       }
     }catch(e){
-      debugPrint(e.toString());
+      // debugPrint(e.toString());
       setState(() {});
     }finally{
       declineIndex = -1;

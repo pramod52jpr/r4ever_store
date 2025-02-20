@@ -55,7 +55,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.taskModel != null ? "Update Task" : "Add Task", style: TextStyle(fontWeight: FontWeight.bold)),
+        title: Text(widget.taskModel != null ? "Update Task" : "Add Task", style: const TextStyle(fontWeight: FontWeight.bold)),
         centerTitle: true,
       ),
       body: SingleChildScrollView(

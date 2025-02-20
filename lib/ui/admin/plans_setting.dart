@@ -45,7 +45,7 @@ class _PlansSettingState extends State<PlansSetting> {
         setState(() {});
       }
     } catch (e) {
-      debugPrint(e.toString());
+      // debugPrint(e.toString());
       status = ApiStatus.error;
       message = e.toString();
       setState(() {});
@@ -64,7 +64,7 @@ class _PlansSettingState extends State<PlansSetting> {
         fetchGlobalData(firstLoad: false);
       }
     }catch(e){
-      debugPrint(e.toString());
+      // debugPrint(e.toString());
     }
   }
 

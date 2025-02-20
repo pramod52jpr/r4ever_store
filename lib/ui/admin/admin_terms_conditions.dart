@@ -52,7 +52,7 @@ class _AdminTermsConditionsState extends State<AdminTermsConditions> {
         setState(() {});
       }
     } catch (e) {
-      debugPrint(e.toString());
+      // debugPrint(e.toString());
       status = ApiStatus.error;
       message = e.toString();
       setState(() {});
@@ -81,8 +81,8 @@ class _AdminTermsConditionsState extends State<AdminTermsConditions> {
       setState(() {
         updateLoading = ApiStatus.error;
       });
-      debugPrint(e.toString());
-      debugPrintStack(stackTrace: s);
+      // debugPrint(e.toString());
+      // debugPrintStack(stackTrace: s);
       Utils.showFlushBar(e.toString(), FlushBarType.error, context);
     }finally{
       setState(() {

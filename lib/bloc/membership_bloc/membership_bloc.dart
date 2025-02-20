@@ -40,8 +40,8 @@ class MembershipBloc extends Bloc<MembershipEvent, MembershipState> {
         throw res.message;
       }
     }catch(e, s){
-      debugPrint(e.toString());
-      debugPrintStack(stackTrace: s);
+      // debugPrint(e.toString());
+      // debugPrintStack(stackTrace: s);
       emit(state.copyWith(actionApiStatus: ApiStatus.error, message: e.toString()));
     }finally{
       emit(state.copyWith(actionApiStatus: ApiStatus.initial));
@@ -58,8 +58,8 @@ class MembershipBloc extends Bloc<MembershipEvent, MembershipState> {
         throw res.message;
       }
     }catch(e, s){
-      debugPrint(e.toString());
-      debugPrintStack(stackTrace: s);
+      // debugPrint(e.toString());
+      // debugPrintStack(stackTrace: s);
       emit(state.copyWith(fetchDataApiStatus: ApiStatus.error, message: e.toString()));
     }
   }

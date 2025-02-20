@@ -24,6 +24,8 @@ mixin _$ActionStatusModel {
   bool get status => throw _privateConstructorUsedError;
   @JsonKey(name: 'message')
   String get message => throw _privateConstructorUsedError;
+  @JsonKey(name: 'url')
+  String get url => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -39,7 +41,8 @@ abstract class $ActionStatusModelCopyWith<$Res> {
   @useResult
   $Res call(
       {@JsonKey(name: 'status') bool status,
-      @JsonKey(name: 'message') String message});
+      @JsonKey(name: 'message') String message,
+      @JsonKey(name: 'url') String url});
 }
 
 /// @nodoc
@@ -57,6 +60,7 @@ class _$ActionStatusModelCopyWithImpl<$Res, $Val extends ActionStatusModel>
   $Res call({
     Object? status = null,
     Object? message = null,
+    Object? url = null,
   }) {
     return _then(_value.copyWith(
       status: null == status
@@ -66,6 +70,10 @@ class _$ActionStatusModelCopyWithImpl<$Res, $Val extends ActionStatusModel>
       message: null == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
+              as String,
+      url: null == url
+          ? _value.url
+          : url // ignore: cast_nullable_to_non_nullable
               as String,
     ) as $Val);
   }
@@ -81,7 +89,8 @@ abstract class _$$ActionStatusModelImplCopyWith<$Res>
   @useResult
   $Res call(
       {@JsonKey(name: 'status') bool status,
-      @JsonKey(name: 'message') String message});
+      @JsonKey(name: 'message') String message,
+      @JsonKey(name: 'url') String url});
 }
 
 /// @nodoc
@@ -97,6 +106,7 @@ class __$$ActionStatusModelImplCopyWithImpl<$Res>
   $Res call({
     Object? status = null,
     Object? message = null,
+    Object? url = null,
   }) {
     return _then(_$ActionStatusModelImpl(
       status: null == status
@@ -107,6 +117,10 @@ class __$$ActionStatusModelImplCopyWithImpl<$Res>
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
               as String,
+      url: null == url
+          ? _value.url
+          : url // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -116,7 +130,8 @@ class __$$ActionStatusModelImplCopyWithImpl<$Res>
 class _$ActionStatusModelImpl implements _ActionStatusModel {
   _$ActionStatusModelImpl(
       {@JsonKey(name: 'status') this.status = false,
-      @JsonKey(name: 'message') this.message = ''});
+      @JsonKey(name: 'message') this.message = '',
+      @JsonKey(name: 'url') this.url = ''});
 
   factory _$ActionStatusModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$ActionStatusModelImplFromJson(json);
@@ -127,10 +142,13 @@ class _$ActionStatusModelImpl implements _ActionStatusModel {
   @override
   @JsonKey(name: 'message')
   final String message;
+  @override
+  @JsonKey(name: 'url')
+  final String url;
 
   @override
   String toString() {
-    return 'ActionStatusModel(status: $status, message: $message)';
+    return 'ActionStatusModel(status: $status, message: $message, url: $url)';
   }
 
   @override
@@ -139,12 +157,13 @@ class _$ActionStatusModelImpl implements _ActionStatusModel {
         (other.runtimeType == runtimeType &&
             other is _$ActionStatusModelImpl &&
             (identical(other.status, status) || other.status == status) &&
-            (identical(other.message, message) || other.message == message));
+            (identical(other.message, message) || other.message == message) &&
+            (identical(other.url, url) || other.url == url));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, status, message);
+  int get hashCode => Object.hash(runtimeType, status, message, url);
 
   @JsonKey(ignore: true)
   @override
@@ -163,9 +182,9 @@ class _$ActionStatusModelImpl implements _ActionStatusModel {
 
 abstract class _ActionStatusModel implements ActionStatusModel {
   factory _ActionStatusModel(
-          {@JsonKey(name: 'status') final bool status,
-          @JsonKey(name: 'message') final String message}) =
-      _$ActionStatusModelImpl;
+      {@JsonKey(name: 'status') final bool status,
+      @JsonKey(name: 'message') final String message,
+      @JsonKey(name: 'url') final String url}) = _$ActionStatusModelImpl;
 
   factory _ActionStatusModel.fromJson(Map<String, dynamic> json) =
       _$ActionStatusModelImpl.fromJson;
@@ -176,6 +195,9 @@ abstract class _ActionStatusModel implements ActionStatusModel {
   @override
   @JsonKey(name: 'message')
   String get message;
+  @override
+  @JsonKey(name: 'url')
+  String get url;
   @override
   @JsonKey(ignore: true)
   _$$ActionStatusModelImplCopyWith<_$ActionStatusModelImpl> get copyWith =>

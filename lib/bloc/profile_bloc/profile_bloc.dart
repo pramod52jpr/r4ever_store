@@ -54,8 +54,8 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState>{
         throw res.message;
       }
     }catch(e, s){
-      debugPrint(e.toString());
-      debugPrintStack(stackTrace: s);
+      // debugPrint(e.toString());
+      // debugPrintStack(stackTrace: s);
       emit(state.copyWith(fetchDataApiStatus: ApiStatus.error, error: e.toString()));
     }
   }
@@ -79,8 +79,8 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState>{
         throw res.message;
       }
     }catch(e, s){
-      debugPrint(e.toString());
-      debugPrintStack(stackTrace: s);
+      // debugPrint(e.toString());
+      // debugPrintStack(stackTrace: s);
       emit(state.copyWith(actionApiStatus: ApiStatus.error, error: e.toString()));
     }finally{
       emit(state.copyWith(actionApiStatus: ApiStatus.initial));
@@ -107,8 +107,8 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState>{
         throw res.message;
       }
     }catch(e, s){
-      debugPrint(e.toString());
-      debugPrintStack(stackTrace: s);
+      // debugPrint(e.toString());
+      // debugPrintStack(stackTrace: s);
       emit(state.copyWith(fetchDataApiStatus: ApiStatus.error, error: e.toString()));
     }
   }
@@ -128,8 +128,8 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState>{
         throw res.message;
       }
     }catch(e, s){
-      debugPrint(e.toString());
-      debugPrintStack(stackTrace: s);
+      // debugPrint(e.toString());
+      // debugPrintStack(stackTrace: s);
       emit(state.copyWith(actionApiStatus: ApiStatus.error, error: e.toString()));
     }finally{
       emit(state.copyWith(actionApiStatus: ApiStatus.initial));
@@ -146,8 +146,8 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState>{
         throw res.message;
       }
     }catch(e, s){
-      debugPrint(e.toString());
-      debugPrintStack(stackTrace: s);
+      // debugPrint(e.toString());
+      // debugPrintStack(stackTrace: s);
       emit(state.copyWith(fetchDataApiStatus: ApiStatus.error, error: e.toString()));
     }
   }
@@ -162,8 +162,8 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState>{
         throw res.message;
       }
     }catch(e, s){
-      debugPrint(e.toString());
-      debugPrintStack(stackTrace: s);
+      // debugPrint(e.toString());
+      // debugPrintStack(stackTrace: s);
       emit(state.copyWith(fetchDataApiStatus: ApiStatus.error, error: e.toString()));
     }
   }
@@ -182,8 +182,8 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState>{
         throw res.message;
       }
     }catch(e, s){
-      debugPrint(e.toString());
-      debugPrintStack(stackTrace: s);
+      // debugPrint(e.toString());
+      // debugPrintStack(stackTrace: s);
       emit(state.copyWith(actionApiStatus: ApiStatus.error, error: e.toString()));
     }finally{
       emit(state.copyWith(actionApiStatus: ApiStatus.initial));
@@ -200,8 +200,8 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState>{
         throw res.message;
       }
     }catch(e, s){
-      debugPrint(e.toString());
-      debugPrintStack(stackTrace: s);
+      // debugPrint(e.toString());
+      // debugPrintStack(stackTrace: s);
       emit(state.copyWith(fetchDataApiStatus: ApiStatus.error, error: e.toString()));
     }
   }
@@ -216,8 +216,8 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState>{
         throw res.message;
       }
     }catch(e, s){
-      debugPrint(e.toString());
-      debugPrintStack(stackTrace: s);
+      // debugPrint(e.toString());
+      // debugPrintStack(stackTrace: s);
       emit(state.copyWith(fetchDataApiStatus: ApiStatus.error, error: e.toString()));
     }
   }
@@ -235,8 +235,8 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState>{
         throw res.message;
       }
     }catch(e, s){
-      debugPrint(e.toString());
-      debugPrintStack(stackTrace: s);
+      // debugPrint(e.toString());
+      // debugPrintStack(stackTrace: s);
       emit(state.copyWith(actionApiStatus: ApiStatus.error, error: e.toString()));
     }finally{
       emit(state.copyWith(actionApiStatus: ApiStatus.initial));

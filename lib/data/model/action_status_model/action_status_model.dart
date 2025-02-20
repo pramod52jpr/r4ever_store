@@ -7,6 +7,7 @@ class ActionStatusModel with _$ActionStatusModel{
   factory ActionStatusModel({
     @Default(false) @JsonKey(name: 'status') bool status,
     @Default('') @JsonKey(name: 'message') String message,
+    @Default('') @JsonKey(name: 'url') String url,
   }) = _ActionStatusModel;
 
   factory ActionStatusModel.fromJson(Map<String, dynamic> json) => _$ActionStatusModelFromJson(json);

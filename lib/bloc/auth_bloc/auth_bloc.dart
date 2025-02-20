@@ -70,8 +70,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState>{
         throw res.message;
       }
     }catch(e, s){
-      debugPrint(e.toString());
-      debugPrintStack(stackTrace: s);
+      // debugPrint(e.toString());
+      // debugPrintStack(stackTrace: s);
       emit(state.copyWith(registerApiStatus: ApiStatus.error, error: e.toString()));
     }finally{
       emit(state.copyWith(registerApiStatus: ApiStatus.initial));
@@ -96,8 +96,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState>{
         throw res.message;
       }
     }catch(e, s){
-      debugPrint(e.toString());
-      debugPrintStack(stackTrace: s);
+      // debugPrint(e.toString());
+      // debugPrintStack(stackTrace: s);
       emit(state.copyWith(loginApiStatus: ApiStatus.error, error: e.toString()));
     }finally{
       emit(state.copyWith(loginApiStatus: ApiStatus.initial));
@@ -118,8 +118,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState>{
         throw res.message;
       }
     }catch(e, s){
-      debugPrint(e.toString());
-      debugPrintStack(stackTrace: s);
+      // debugPrint(e.toString());
+      // debugPrintStack(stackTrace: s);
       emit(state.copyWith(fetchDataApiStatus: ApiStatus.error, message: e.toString()));
     }
   }
@@ -135,8 +135,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState>{
         throw res.message;
       }
     }catch(e, s){
-      debugPrint(e.toString());
-      debugPrintStack(stackTrace: s);
+      // debugPrint(e.toString());
+      // debugPrintStack(stackTrace: s);
       emit(state.copyWith(actionApiStatus: ApiStatus.error, message: e.toString()));
     }finally{
       emit(state.copyWith(actionApiStatus: ApiStatus.initial));
@@ -157,8 +157,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState>{
         throw res.message;
       }
     }catch(e, s){
-      debugPrint(e.toString());
-      debugPrintStack(stackTrace: s);
+      // debugPrint(e.toString());
+      // debugPrintStack(stackTrace: s);
       emit(state.copyWith(actionApiStatus: ApiStatus.error, message: e.toString()));
     }finally{
       emit(state.copyWith(actionApiStatus: ApiStatus.initial));
@@ -175,8 +175,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState>{
         throw res.message;
       }
     }catch(e, s){
-      debugPrint(e.toString());
-      debugPrintStack(stackTrace: s);
+      // debugPrint(e.toString());
+      // debugPrintStack(stackTrace: s);
       emit(state.copyWith(fetchDataApiStatus: ApiStatus.error, message: e.toString()));
     }
   }
@@ -190,8 +190,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState>{
         throw res.message;
       }
     }catch(e, s){
-      debugPrint(e.toString());
-      debugPrintStack(stackTrace: s);
+      // debugPrint(e.toString());
+      // debugPrintStack(stackTrace: s);
     }
   }
 
